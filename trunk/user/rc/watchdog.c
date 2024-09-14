@@ -1016,7 +1016,7 @@ static void httpd_process_check(void)
 	if (httpd_missing == 1)
 		return;
 
-	if (!httpd_is_run
+	if ((!httpd_is_run
 #ifdef HTTPD_CHECK
 	    || !httpd_check_v2()
 #endif

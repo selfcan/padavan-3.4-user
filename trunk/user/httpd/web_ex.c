@@ -2181,7 +2181,7 @@ static int shadowsocks_status_hook(int eid, webs_t wp, int argc, char **argv)
 	}
 	if (ss_status_code == 0){
 		ss_status_code = pids("xray");
-
+	}
 	if (ss_status_code == 0){
 		ss_status_code = pids("trojan");
 	}
@@ -3592,6 +3592,7 @@ apply_cgi(const char *url, webs_t wp)
 		doSystem("echo 3 > /proc/sys/vm/drop_caches");
 		websRedirect(wp, current_url);
 		return 0;
+	}
 	else if (!strcmp(value, " RestoreNVRAM "))
 	{
 		websApply(wp, "Restarting.asp");

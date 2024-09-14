@@ -319,44 +319,6 @@ btn_check_ez(int btn_pin, int btn_id, int *p_btn_state)
 static void
 refresh_ntp(void)
 {
-	int result = 0;
-	char *svcs[] = { "ntpd", NULL };
-	char *ntp_addr[2], *ntp_server;
-
-	kill_services(svcs, 3, 1);
-
-	ntp_addr[0] = nvram_safe_get("ntp_server0");
-	ntp_addr[1] = nvram_safe_get("ntp_server1");
-
-	if (strlen(ntp_addr[0]) < 3)
-		ntp_addr[0] = ntp_addr[1];
-	else if (strlen(ntp_addr[1]) < 3)
-		ntp_addr[1] = ntp_addr[0];
-
-	if (strlen(ntp_addr[0]) < 3) {
-		ntp_addr[0] = "pool.ntp.org";
-		ntp_addr[1] = ntp_addr[0];
-	}
-
-	ntp_server = ntp_addr[ntpc_server_idx];
-	ntpc_server_idx = (ntpc_server_idx + 1) % 2;
-
-	result = eval("/usr/sbin/ntpd", "-qt", "-S", NTPC_DONE_SCRIPT, "-p", ntp_server);
-
-	logmessage("NTP Client", "Synchronizing time to %s.", ntp_server);
-	return result;
-}
-
-int
-is_ntpc_updated(void)
-{
-	return (nvram_get_int("ntpc_counter") > 0) ? 1 : 0;
-}
-
-static void
-refresh_ntp(void)
-{
-				
 	char *svcs[] = { "ntpd", NULL };
 	char *ntp_addr[2], *ntp_server;
 
@@ -381,7 +343,44 @@ refresh_ntp(void)
 	eval("/usr/sbin/ntpd", "-qt", "-S", NTPC_DONE_SCRIPT, "-p", ntp_server);
 
 	logmessage("NTP Client", "Synchronizing time to %s.", ntp_server);
-			   
+}
+
+int
+is_ntpc_updated(void)
+{
+	return (nvram_get_int("ntpc_counter") > 0) ? 1 : 0;
+}
+
+static void
+ntpc_handler(void)
+{
+	int ntp_period = nvram_get_int("ntp_period");
+
+	if (ntp_period < 1)
+		return;
+
+	if (ntp_period > 336)
+		ntp_period = 336; // max two weeks
+
+	ntp_period = ntp_period * 360;
+
+	// update ntp every period time
+	ntpc_timer = (ntpc_timer + 1) % ntp_period;
+	if (ntpc_timer == 0) {
+		setenv_tz();
+		refresh_ntp();
+	} else if (!is_ntpc_updated()) {
+		int ntp_skip = 3;	// update every 30s
+		
+		ntpc_tries++;
+		if (ntpc_tries > 60)
+			ntp_skip = 30;	// update every 5m
+		else if (ntpc_tries > 9)
+			ntp_skip = 6;	// update every 60s
+		
+		if (!(ntpc_tries % ntp_skip))
+			refresh_ntp();
+	}
 }
 
 static void
@@ -1015,11 +1014,11 @@ static void httpd_process_check(void)
 	if (httpd_missing == 1)
 		return;
 
-	if ((!httpd_is_run
+	if (!httpd_is_run
 #ifdef HTTPD_CHECK
 	    || !httpd_check_v2()
 #endif
-	) && nvram_match("httpd_started", "1"))
+	)
 	{
 		printf("## restart httpd ##\n");
 		httpd_missing = 0;
@@ -1077,7 +1076,6 @@ ntpc_updated_main(int argc, char *argv[])
 
 	return 0;
 }
-
 
 static void
 watchdog_on_sighup(void)

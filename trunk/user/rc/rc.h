@@ -744,18 +744,12 @@ void ez_event_long(int btn_id);
 #endif
 int  is_ntpc_updated(void);
 int  ntpc_updated_main(int argc, char *argv[]);
-int  ntpc_syncnow_main(int argc, char *argv[]);
 int  watchdog_main(int argc, char *argv[]);
 int  start_watchdog(void);
 void notify_watchdog_time(void);
 void notify_watchdog_wifi(int is_5ghz);
 
-int  btn_main(int argc, char *argv[]);
-int  start_gpio_btn(void);
-int  get_state_led_pwr(void);
-void btn_reset_action(void);
-void btn_event_long(int btn_id);
-void btn_event_short(int btn_id);
+
 #if defined (USE_RT3352_MII)
 /* inicd */
 int inicd_main(int argc, char *argv[]);
@@ -767,11 +761,11 @@ int stop_inicd(void);
 /* smp.c */
 void set_cpu_affinity(int is_ap_mode);
 void set_vpn_balancing(const char *vpn_ifname, int is_server);
-void set_pppoe_balancing(void);
+
 #else
 #define set_cpu_affinity(x)
 #define set_vpn_balancing(ptr,val)
-#define set_pppoe_balancing(x)
+
 #endif
 
 /* rstats.c */

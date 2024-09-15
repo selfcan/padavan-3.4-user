@@ -2,7 +2,7 @@ SRC_NAME = inadyn-2.12.0
 SRC_URL = https://github.com/troglobit/inadyn/releases/download/v2.12.0/$(SRC_NAME).tar.xz
 THISDIR = $(shell pwd)
 
-all: config_test
+all: download_test extract_test config_test
 	$(MAKE) -j$(HOST_NCPU) -C $(SRC_NAME)
 
 download_test:

@@ -358,6 +358,7 @@ start_dns_dhcpd(int is_ap_mode)
 	if (!is_ap_mode && nvram_match("dhcp_proxy_dnssec", "1")) {
 		/* Proxy DNSSEC validation results from upstream nameservers */
 		fprintf(fp, "proxy-dnssec\n");
+	}
 	if (!is_ap_mode) {
 		is_dns_used = 1;
 		fprintf(fp, "min-port=%d\n", 4096);

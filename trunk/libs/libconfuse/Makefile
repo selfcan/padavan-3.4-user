@@ -1,6 +1,5 @@
-SRC_NAME = inadyn-2.12.0
-SRC_URL = https://github.com/troglobit/inadyn/releases/download/v2.12.0/$(SRC_NAME).tar.xz
-THISDIR = $(shell pwd)
+SRC_NAME=confuse-3.3
+SRC_URL=https://github.com/libconfuse/libconfuse/releases/download/v3.3/$(SRC_NAME).tar.xz
 
 all: download_test extract_test config_test
 	$(MAKE) -j$(HOST_NCPU) -C $(SRC_NAME)
@@ -12,7 +11,7 @@ download_test:
 
 extract_test:
 	( if [ ! -d $(SRC_NAME) ]; then \
-		tar -xf $(SRC_NAME).tar.xz; \
+		tar -xf $(SRC_NAME).tar.xz ; \
 	fi )
 
 config_test:
@@ -24,14 +23,15 @@ config_test:
 
 configure:
 	( cd $(SRC_NAME) ; \
-	autoreconf -fi ; \
 	./configure \
-		--prefix=/usr \
-		--enable-openssl \
-		PKG_CONFIG_LIBDIR="$(STAGEDIR)/lib/pkgconfig/" \
+		--disable-examples \
+		--enable-static \
+		--disable-shared \
+		--prefix=$(STAGEDIR) \
 		--host=$(HOST_TARGET) \
 		--build=$(HOST_BUILD) ; \
 	)
+
 
 clean:
 	if [ -f $(SRC_NAME)/Makefile ] ; then \
@@ -39,5 +39,7 @@ clean:
 	fi ; \
 	rm -f config_done
 
+install:
+	$(MAKE) -C $(SRC_NAME) install DESTDIR=""
+
 romfs:
-	$(ROMFSINST) -p +x $(THISDIR)/$(SRC_NAME)/src/inadyn /bin/inadyn

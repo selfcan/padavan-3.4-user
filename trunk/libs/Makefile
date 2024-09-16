@@ -210,18 +210,19 @@ dir_$(LIBS_INCLUDE_LIBJSON_C)			+= libjson-c
 dir_$(LIBS_INCLUDE_LIBWEBSOCKETS)		+= libwebsockets
 dir_$(LIBS_INCLUDE_LIBPCRE)			+= libpcre
 dir_$(LIBS_INCLUDE_LIBEV)			+= libev
-dir_y			+= libuv
+dir_y						+= libuv
 dir_$(LIBS_INCLUDE_LIBSODIUM)			+= libsodium
 dir_$(LIBS_INCLUDE_LIBUDNS)			+= libudns
 dir_$(LIBS_INCLUDE_MBEDTLS)			+= mbedtls
 dir_$(LIBS_INCLUDE_CURL)			+= libcurl
 dir_$(LIBS_INCLUDE_BOOST)			+= boost
+dir_y						+= libconfuse
 dir_y						+= libnfnetlink
 # ipset shared libs
 ifneq ($(CONFIG_WITHOUT_KERNEL),y)
 dir_$(CONFIG_FIRMWARE_INCLUDE_IPSET)		+= libmnl
 endif
-dir_$(LIBS_INCLUDE_LIBPCAP)		+= libpcap
+dir_$(LIBS_INCLUDE_LIBPCAP)			+= libpcap
 
 # minidlna and firefly shared libs
 dir_$(LIBS_INCLUDE_MEDIA)			+= libid3tag

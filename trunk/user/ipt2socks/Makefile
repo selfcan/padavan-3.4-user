@@ -4,7 +4,7 @@ SRC_VERSION := 1.1.4
 SRC_DIR := $(SRC_NAME)-$(SRC_VERSION)
 SRC_URL := https://github.com/zfl9/ipt2socks/archive/v$(SRC_VERSION).tar.gz
 
-all: download_src extract_src
+all:
 	$(MAKE) -j$(HOST_NCPU) -C $(SRC_DIR) CC="$(CC)"
 
 download_src:

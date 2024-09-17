@@ -17,7 +17,6 @@ download_test:
 extract_test:
 	( if [ ! -d $(SRC_NAME) ]; then \
 		tar -xf $(SRC_NAME).tar.xz; \
-		patch -p1 -d $(SRC_NAME) < $(SRC_NAME).patch; \
 	fi )
 																									
 config_test:

@@ -29,6 +29,7 @@ configure:
 	-DLWS_WITHOUT_TESTAPPS=ON \
 	-DLWS_UNIX_SOCK=ON \
 	-DLWS_IPV6=ON \
+	-DLWS_WITH_LIBUV=ON \
 	.. \
 	)
 

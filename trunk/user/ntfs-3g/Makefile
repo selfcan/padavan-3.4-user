@@ -26,6 +26,7 @@ config_test:
 
 configure:
 	( cd $(SRC_NAME) ; \
+	./autogen.sh ; \
 	./configure \
 		--prefix=/usr \
 		--enable-shared=no \

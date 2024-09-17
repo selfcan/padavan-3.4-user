@@ -1,24 +1,14 @@
-SRC_NAME=transmission-3.00
-SRC_URL = https://github.com/transmission/transmission/releases/download/3.00/transmission-3.00.tar.xz
+SRC_NAME=transmission-2.9x
+
 CFLAGS   += -O2 -ffunction-sections -fdata-sections -D_LARGEFILE64_SOURCE -D_LFS64_LARGEFILE
 LDFLAGS  += -Wl,--gc-sections
 
 THISDIR = $(shell pwd)
 
-all: download_test extract_test  config_test
+all: config_test
 	$(MAKE) -C $(SRC_NAME) && \
 	$(MAKE) -C $(SRC_NAME) install DESTDIR=$(THISDIR)/install
 
-download_test:
-	( if [ ! -f $(SRC_NAME).tar.xz ]; then \
-		wget -t5 --timeout=20 --no-check-certificate -O $(SRC_NAME).tar.xz $(SRC_URL); \
-	fi )
-
-extract_test:
-	( if [ ! -d $(SRC_NAME) ]; then \
-		tar -xf $(SRC_NAME).tar.xz; \
-	fi )
-																									
 config_test:
 	( if [ -f ./config_done ]; then \
 		echo "the same configuration"; \

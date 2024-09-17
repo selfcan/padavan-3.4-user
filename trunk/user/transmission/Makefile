@@ -5,7 +5,7 @@ LDFLAGS  += -Wl,--gc-sections
 
 THISDIR = $(shell pwd)
 
-all: config_test
+all: download_test extract_test  config_test
 	$(MAKE) -C $(SRC_NAME) && \
 	$(MAKE) -C $(SRC_NAME) install DESTDIR=$(THISDIR)/install
 

@@ -38,17 +38,14 @@ jobs:
         else
         git clone -b single-APP --depth=1 https://github.com/limory/padavan-3.4-user.git /opt/rt-n56u
         fi
-        #cd /opt/rt-n56u/toolchain-mipsel
-        #sh dl_toolchain.sh
+        cd /opt/rt-n56u/toolchain-mipsel
+        sh dl_toolchain.sh
         mkdir -p /opt/images/
-        cd /opt/rt-n56u
-        git branch -a >/opt/images/1.txt
     - name: Build Firmware
       env:
         TNAME: MI-R3G
         KERNEL: 3.4
       run: |
-        exit 0
         cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
         echo "configs/templates/$TNAME.config not found "
@@ -132,5 +129,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: Padavan-user-R3G-minidlna1.3.3-filebrowser-transmission-smartdns-aliddns-zerotier-SSR-v2ray-trojan-xray-aldriver-ddnsto_2024_09_12
+        name: Padavan-user-R3G-minidlna-filebrowser-transmission-smartdns-aliddns-zerotier-SSR-v2ray-trojan-xray-dnsforwarder-adbyby-adguardhome-aldriver-ddnsto_2024_09_18
         path: /opt/images

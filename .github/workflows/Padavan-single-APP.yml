@@ -1,5 +1,5 @@
 #修改TNAME: K2P 中的K2P为你需要编译的型号，注意名称要与configs/templates/目录下的名字相同
-name: Padavan-user-R3G
+name: Padavan-user-R3G-Single-APP
 on: 
   release:
     types: [published]
@@ -38,8 +38,8 @@ jobs:
         else
         git clone --depth=1 https://github.com/limory/padavan-3.4-user.git /opt/rt-n56u
         fi
-#        cd /opt/rt-n56u/toolchain-mipsel
-#        sh dl_toolchain.sh
+        #cd /opt/rt-n56u/toolchain-mipsel
+        #sh dl_toolchain.sh
         mkdir -p /opt/images/
         cd /opt/rt-n56u
         git branch -a >/opt/images/1.txt

@@ -3,6 +3,7 @@
 start_ald() {
    logger -t "阿里云盘" "正在启动..."
    NAME=aliyundrive-webdav
+   BIN=$(test -e /usr/bin/$NAME && echo /usr/bin/$NAME || echo /opt/bin/$NAME)
    enable=$(nvram get aliyundrive_enable)
    case "$enable" in
     1|on|true|yes|enabled)
@@ -37,7 +38,7 @@ start_ald() {
         esac
       fi
 	  
-      /usr/bin/$NAME $extra_options --host $host --port $port --root $root  --refresh-token $refresh_token -S $read_buf_size --cache-size $cache_size --cache-ttl $cache_ttl --workdir /tmp/$NAME >/dev/null 2>&1 &
+      $BIN $extra_options --host $host --port $port --root $root  --refresh-token $refresh_token -S $read_buf_size --cache-size $cache_size --cache-ttl $cache_ttl --workdir /tmp/$NAME >/dev/null 2>&1 &
 	  ;;
     *)
       kill_ald ;;

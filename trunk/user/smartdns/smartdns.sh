@@ -5,7 +5,7 @@
 #
 action="$1"
 storage_Path="/etc/storage"
-smartdns_Bin="/usr/bin/smartdns"
+smartdns_Bin=$(test -e /usr/bin/smartdns && echo /usr/bin/smartdns || echo /opt/bin/smartdns)
 smartdns_Ini="$storage_Path/smartdns_conf.ini"
 smartdns_Conf="$storage_Path/smartdns.conf"
 smartdns_tmp_Conf="$storage_Path/smartdns_tmp.conf"

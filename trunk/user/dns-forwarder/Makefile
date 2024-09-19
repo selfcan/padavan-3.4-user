@@ -23,7 +23,7 @@ clean:
 	rm -f config_done
 
 romfs:
-#	$(ROMFSINST) -p +x $(THISDIR)/$(SRC_NAME)/build/dns-forwarder /usr/bin/dns-forwarder
+	$(ROMFSINST) -p +x $(THISDIR)/$(SRC_NAME)/build/dns-forwarder /usr/bin/dns-forwarder
 	$(ROMFSINST) -p +x $(THISDIR)/dns-forwarder.sh /usr/bin/dns-forwarder.sh
-	chmod +x $(THISDIR)/$(SRC_NAME)/build/dns-forwarder
-	mv $(THISDIR)/$(SRC_NAME)/build/dns-forwarder /opt/images/
+#	chmod +x $(THISDIR)/$(SRC_NAME)/build/dns-forwarder
+#	mv $(THISDIR)/$(SRC_NAME)/build/dns-forwarder /opt/images/

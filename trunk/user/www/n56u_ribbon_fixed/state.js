@@ -420,7 +420,7 @@ if (found_app_aliddns()||found_app_zerotier()||found_app_ddnsto()){
 	tabtitle[16] = new Array("", "<#menu5_30#>");
 }
 if (found_app_frp()){
-	tabtitle[17] = new Array("", "<#menu5_25_1#>");
+	tabtitle[19] = new Array("", "<#menu5_25_1#>");
 }
 if (found_app_aldriver()){
 	tabtitle[17] = new Array("", "<#menu5_36#>");

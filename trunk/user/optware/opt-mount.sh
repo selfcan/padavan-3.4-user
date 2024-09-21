@@ -2,7 +2,7 @@
 
 self_name="opt-mount.sh"
 
-logger -t "${self_name}" "开始运行  /opt检测是否挂载?安装?启动/opt/etc/init.d服务?"
+logger -t "${self_name}" "开始检查OptWare服务..."
 
 # check params
 [ -z "$1" ] || [ -z "$2" ] && exit 1
@@ -13,12 +13,12 @@ mtd_device=`echo "$1" | egrep '^/dev/mtd|^/dev/ubi'`
 
 if [ -z "$mtd_device" ] ; then
 	optw_enable=`nvram get optw_enable`
-	[ "$optw_enable" != "1" ] && exit 0
+	[ "$optw_enable" != "1" ] && (logger -t "${self_name}" "OptWare配置未开启！") && exit 0
 fi
 
 
 # check /opt already mounted then exit
-mountpoint -q /opt && exit 0
+mountpoint -q /opt && (logger -t "${self_name}" "/opt目录已挂载！") && exit 0
 
 
 # check dir "opt" exist on the drive root
@@ -31,7 +31,7 @@ logger -t "${self_name}" "starting... [$@] "
 # mount /opt (bind only)
 mount -o bind "$2/opt" /opt
 if [ $? -ne 0 ] ; then
-	logger -t "${self_name}" "Mount $2/opt to /opt FAILED! WTF?"
+	logger -t "${self_name}" "挂载 $2/opt 到 /opt 失败！"
 	exit 1
 fi
 
@@ -39,6 +39,7 @@ logger -t "${self_name}" "已挂载USB $2/opt 到系统根目录/opt"
 
 # 如果不存在/opt/bin/opkg二进制文件，则启动安装sh
 if [ ! -f /opt/bin/opkg ] ; then
+	logger -t "${self_name}" "未检测到/opt/bin/opkg二进制文件，开始安装..."
 	/usr/bin/opt-opkg-upd.sh
 	exit 1
 fi

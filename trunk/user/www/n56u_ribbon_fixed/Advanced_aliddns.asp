@@ -36,7 +36,7 @@ $j(document).ready(function() {
 
 function initial(){
 	show_banner(2);
-	show_menu(5,17,0);
+	show_menu(5,16);
 	show_footer();
 	showmenu();
 	change_aliddns_enable_bridge(1);

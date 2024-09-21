@@ -39,7 +39,7 @@ $j(document).ready(function() {
 
 function initial(){
 	show_banner(2);
-	show_menu(5,17,0);
+	show_menu(5,16);
 	showmenu();
 	fill_status(ddnsto_status());
 	show_footer();

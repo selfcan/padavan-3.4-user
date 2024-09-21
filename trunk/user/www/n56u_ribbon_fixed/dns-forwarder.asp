@@ -35,7 +35,7 @@ showhide_div('sdnslink', found_app_smartdns());
 
 function initial(){
 	show_banner(2);
-	show_menu(5,12,1);
+	show_menu(5,15);
 	showmenu();
 	show_footer();
 	fill_status(dnsforwarder_status());

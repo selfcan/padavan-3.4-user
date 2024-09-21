@@ -85,7 +85,7 @@ var isMenuopen = 0;
 
 function initial(){
 	show_banner(2);
-	show_menu(5,15);
+	show_menu(5,14);
 	showmenu();
 	show_footer();
 	fill_adbyby_status(adbyby_status());

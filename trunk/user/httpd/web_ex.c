@@ -2813,13 +2813,12 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_frp,
 		found_app_zerotier,
 		found_app_ddnsto,
-		found_app_frp,
-		found_app_vpnsvr,
-		found_app_vpncli,
 		found_app_aldriver,
 		found_app_aliddns,
 		found_app_xupnpd,
-		found_app_mentohust
+		found_app_mentohust,
+		found_app_vpnsvr,
+		found_app_vpncli
 	);
 
 	websWrite(wp,
@@ -2865,8 +2864,8 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		has_ipv4_ppe,
 		has_peap_ssl,
 		has_http_ssl,
-		has_ddns_ssl,
 		has_openssl_ec,
+		has_ddns_ssl,
 		MIN_EXT_VLAN_VID,
 		max_conn,
 		has_mtd_rwfs,

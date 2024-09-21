@@ -78,7 +78,7 @@
         }
         function initial() {
             show_banner(2);
-            show_menu(5, 16);
+            show_menu(5, 15);
             show_footer();
             showTab(getHash());
             showMRULESList();

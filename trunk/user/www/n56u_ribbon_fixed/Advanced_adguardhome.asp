@@ -37,7 +37,7 @@ $j(document).ready(function() {
 
 function initial(){
 	show_banner(2);
-	show_menu(5,16);
+	show_menu(5,14);
 	showmenu();
 	show_footer();
 
@@ -56,7 +56,7 @@ function applyRule(){
 }
 
 function showmenu(){
-showhide_div('adbylink', found_app_smartdns());
+showhide_div('adbylink', found_app_adbyby());
 }
 
 function done_validating(action){

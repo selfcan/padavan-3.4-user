@@ -118,7 +118,7 @@ setTimeout('document.getElementById("btn_ctime").style.display="none";',1000);
 }
 		function initial() {
 			show_banner(2);
-			show_menu(13, 13, 0);
+			show_menu(5, 12);
 			show_footer();
 			fill_ss_status(shadowsocks_status());
 			fill_dns2tcp_status(dns2tcp_status());

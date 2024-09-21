@@ -399,7 +399,7 @@ tabtitle[7] = new Array("", "<#menu5_10_1#>", "<#menu5_10_2#>", "<#menu5_10_3#>"
 tabtitle[8] = new Array("", "<#menu5_11#>", "<#menu5_12#>", "WAN", "", "", "", "", "", "", "");
 tabtitle[9] = new Array("", "<#menu5_7_2#>", "<#menu5_7_3#>", "<#menu5_7_5#>", "<#menu5_7_6#>", "<#menu5_7_8#>");
 if (found_app_scutclient()){
-	tabtitle[10] = new Array("", "<#menu5_1_1#>","<#menu5_13_log#>");
+	tabtitle[11] = new Array("", "<#menu5_1_1#>","<#menu5_13_log#>");
 }
 
 if (found_app_shadowsocks()){
@@ -418,13 +418,13 @@ if (found_app_aliddns()||found_app_zerotier()||found_app_ddnsto()){
 	tabtitle[16] = new Array("", "<#menu5_30#>");
 }
 if (found_app_frp()){
-	tabtitle[19] = new Array("", "<#menu5_25_1#>");
-}
-if (found_app_aldriver()){
-	tabtitle[17] = new Array("", "<#menu5_36#>");
+        tabtitle[17] = new Array("", "<#menu5_25_1#>");
 }
 if (found_app_caddy()){
 	tabtitle[18] = new Array("", "<#menu5_27_1#>");
+}
+if (found_app_aldriver()){
+        tabtitle[19] = new Array("", "<#menu5_36#>");
 }
 //Level 3 Tab title
 
@@ -440,7 +440,7 @@ tablink[8] = new Array("", "Main_WStatus2g_Content.asp", "Main_WStatus_Content.a
 tablink[9] = new Array("", "Main_LogStatus_Content.asp", "Main_DHCPStatus_Content.asp", "Main_IPTStatus_Content.asp", "Main_RouteStatus_Content.asp", "Main_CTStatus_Content.asp");
 if (found_app_scutclient()){
 	scutclient_array = new Array("", "scutclient.asp", "scutclient_log.asp");
-	tablink[10] = (scutclient_array);
+	tablink[11] = (scutclient_array);
 }
 
 if (found_app_shadowsocks()){
@@ -479,27 +479,21 @@ if (found_app_aliddns()){
 	ddnsto_array = new Array("","Advanced_ddnsto.asp");
 	tablink[16] = (ddnsto_array);
 }
-if (found_app_aldriver()){
-	aldriver_arry = new Array("","Advanced_aliyundrive.asp");
-	tablink[17] = (aldriver_arry);
-}
- 
- 
 if (found_app_frp()){
-	frp_array = new Array("","Advanced_frp.asp");
-	tablink[19] = (frp_array);
-	tabtitle[9].push('<#menu5_25_1#>');
-	tablink[9].push('Advanced_frp_log.asp');
-												  
-							 
- 
-					 
-											  
-						   
+        frp_array = new Array("","Advanced_frp.asp");
+        tablink[17] = (frp_array);
+        tabtitle[9].push("<#menu5_25_1#>");
+	tablink[9].push("Advanced_frp_log.asp");
+
 }
 if (found_app_caddy()){
-	caddy_array = new Array("","Advanced_caddy.asp");
-	tablink[18] = (caddy_array);
+        caddy_array = new Array("","Advanced_caddy.asp");
+        tablink[18] = (caddy_array);
+} 
+
+if (found_app_aldriver()){
+        aldriver_arry = new Array("","Advanced_aliyundrive.asp");
+        tablink[19] = (aldriver_arry);
 }
 
 //Level 2 Menu
@@ -579,16 +573,15 @@ if (found_app_aliddns()){
 	menuL2_link.push(ddnsto_array[1]);
 } else menuL2_link.push("");
 
-if (found_app_aldriver()){
-	menuL2_link.push(aldriver_arry[1]);
-} else menuL2_link.push("");
 if (found_app_frp()){
 	menuL2_link.push(frp_array[1]);
 } else menuL2_link.push("");
 if (found_app_caddy()){
 	menuL2_link.push(caddy_array[1]);
 } else menuL2_link.push("");
-	
+if (found_app_aldriver()){
+        menuL2_link.push(aldriver_arry[1]);
+} else menuL2_link.push("");	
 		
 			
 				

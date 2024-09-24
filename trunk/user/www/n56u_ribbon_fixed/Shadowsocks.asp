@@ -118,7 +118,7 @@ setTimeout('document.getElementById("btn_ctime").style.display="none";',1000);
 }
 		function initial() {
 			show_banner(2);
-			show_menu(13, 13, 0);
+			show_menu(5, 12);
 			show_footer();
 			fill_ss_status(shadowsocks_status());
 			fill_dns2tcp_status(dns2tcp_status());
@@ -1573,7 +1573,7 @@ setTimeout('document.getElementById("btn_ctime").style.display="none";',1000);
 												<div class="alert alert-info" style="margin: 10px;">一个兼容Shadowsocks、ShadowsocksR 、Vmess、Vless、Trojan、Sock5协议的游戏加速工具。
 													<div><span style="color:#E53333;">注意:</span></div>
 													<div><span style="color:#E53333;">若被编辑的节点正在运行使用，请完成后点击“应用设置”更新节点信息并重连</span></div>
-													<div><span style="color:#E53333;">运行状态不会实时更新，启动节点后需等待一段时间手动 <input type="button" id="btn_reconnect" class="btn btn-info" value="刷新页面" onclick="window.location.reload();" tabindex="1"> 获取运行状态</span></div>
+													<div><span style="color:#E53333;">运行状态不会实时更新，启动节点后需等待一段时间手动 <input type="button" id="btn_refresh" class="btn btn-info" value="刷新页面" onclick="window.location.reload();" tabindex="1"> 获取运行状态</span></div>
 												</div>
 												<table width="100%" cellpadding="4" cellspacing="0" class="table">
 													<tr>

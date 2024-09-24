@@ -252,7 +252,7 @@ function applyRule(){
 										</tr>
 										
 										<tr id="row_wdnsf" style="display:none">
-											<th width="50%" >DNS-forwarder</th>
+											<th width="50%" >DNSForwarder</th>
 											<td>
 													<div class="main_itoggle">
 													<div id="w_dnsf_on_of">

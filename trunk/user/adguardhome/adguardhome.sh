@@ -1,5 +1,7 @@
 #!/bin/sh
 
+adg_file="/etc/storage/adg.sh"
+work_dir="/tmp/AdGuardHome"
 change_dns() {
   if [ "$(nvram get adg_redirect)" = 1 ]; then
     sed -i '/no-resolv/d' /etc/storage/dnsmasq/dnsmasq.conf
@@ -58,7 +60,6 @@ clear_iptable()
 }
 
 getconfig(){
-  adg_file="/etc/storage/adg.sh"
   if [ ! -f "$adg_file" ] || [ ! -s "$adg_file" ] ; then
 	  cat > "$adg_file" <<-\EEE
 bind_host: 0.0.0.0
@@ -123,22 +124,21 @@ verbose: false
 schema_version: 3
 
 EEE
-	  chmod 755 "$adg_file"
+	chmod 755 "$adg_file"
   fi
 }
 
 start_adg(){
-  mkdir -p /tmp/AdGuardHome
-	mkdir -p /etc/storage/AdGuardHome
+	mkdir -p $work_dir
 	getconfig
 	change_dns
 	set_iptable
 	logger -t "AdGuardHome" "启动 AdGuardHome"
-	eval "AdGuardHome -c $adg_file -w /tmp/AdGuardHome -v" &
+	AdGuardHome -c $adg_file -w $work_dir -v &
 }
 
 stop_adg(){
-  rm -rf /tmp/AdGuardHome
+  rm -rf $work_dir
   logger -t "AdGuardHome" "停止 AdGuardHome"
   killall -9 AdGuardHome
   del_dns
@@ -153,6 +153,6 @@ stop)
 	stop_adg
 	;;
 *)
-	echo "check"
+	echo "start|stop"
 	;;
 esac

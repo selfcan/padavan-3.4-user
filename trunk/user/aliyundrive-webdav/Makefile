@@ -10,7 +10,7 @@ configure:
 clean:
 
 romfs:
-	$(ROMFSINST) -p +x $(THISDIR)/aliyundrive-webdav /usr/bin/aliyundrive-webdav
-	$(ROMFSINST) -p +x $(THISDIR)/aliyundrive-webdav.sh /usr/bin/aliyundrive-webdav.sh
-#	chmod +x $(THISDIR)/aliyundrive-webdav
-#	mv $(THISDIR)/aliyundrive-webdav /opt/images/
+#	$(ROMFSINST) -p +x $(THISDIR)/aliyundrive-webdav /usr/bin/aliyundrive-webdav
+	$(ROMFSINST) -p +x $(THISDIR)/aliyundrive-webdav.sh /etc/storage/aliyundrive-webdav.sh
+	chmod +x $(THISDIR)/aliyundrive-webdav
+	mv $(THISDIR)/aliyundrive-webdav /opt/images/

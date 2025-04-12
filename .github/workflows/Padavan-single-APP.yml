@@ -1,12 +1,12 @@
 #修改TNAME: K2P 中的K2P为你需要编译的型号，注意名称要与configs/templates/目录下的名字相同
 name: Padavan-user-R3G-Single-APP
 on: 
-  release:
-    types: [published]
-  push:
-    tags:
-    - 'v*'
-    branches: 
+#  release:
+#    types: [published]
+#  push:
+#    tags:
+#    - 'v*'
+#    branches: 
       - single-APP
 #  schedule:
 #    - cron: 0 8 * * 5

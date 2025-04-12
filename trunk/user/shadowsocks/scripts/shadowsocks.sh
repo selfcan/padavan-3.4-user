@@ -325,9 +325,9 @@ start_AD() {
 	mkdir -p /tmp/dnsmasq.dom
 	curl -k -s -o /tmp/adnew.conf --connect-timeout 10 --retry 3 $(nvram get ss_adblock_url)
 	if [ ! -f "/tmp/adnew.conf" ]; then
-		logger -t "SS" "AD文件下载失败，可能是地址失效或者网络异常！"
+		logger -t "SS" "去广告AD文件下载失败，可能是地址失效或者网络异常！"
 	else
-		logger -t "SS" "AD文件下载成功"
+		logger -t "SS" "去广告AD文件下载成功"
 		if [ -f "/tmp/adnew.conf" ]; then
 			check = `grep -wq "address=" /tmp/adnew.conf`
 	  		if [ ! -n "$check" ] ; then
@@ -442,7 +442,6 @@ if rules; then
         logger -t "SS" "内网IP控制为:$lancons"
         nvram set check_mode=0
 }
-
 # ================================= 关闭SS ===============================
 
 ssp_close() {
@@ -573,22 +572,60 @@ ressp() {
 	logger -t "SS" "备用服务器启动成功"
 	logger -t "SS" "内网IP控制为:$lancons"
 }
-
+check_smsrtdns() {
+	smartdns_process=$(pidof smartdns)
+	if [ -n "$smartdns_process" ] && [ $(nvram get sdns_enable) = 1 ] ; then
+		log "检测到 SmartDNS 已开启,正在重启 SmartDNS..."
+		[ $(pidof smartdns | awk '{ print $1 }')x != x ] && killall -9 smartdns >/dev/null 2>&1
+		/etc/storage/smartdns.sh start
+	fi
+}
 case $1 in
 start)
+	if [ $(nvram get ss_adblock) = "1" ]; then
+		start_AD
+	fi
 	ssp_start
+	smartdns_process=$(pidof smartdns)
+	if [ -n "$smartdns_process" ] && [ $(nvram get sdns_enable) = 1 ] ; then
+		sleep 2
+		check_smsrtdns
+	fi
+	echo 3 > /proc/sys/vm/drop_caches
 	;;
 stop)
 	killall -q -9 ssr-switch
 	ssp_close
+	dns2tcp_process=$(pidof dns2tcp)
+	smartdns_process=$(pidof smartdns)
+	if [ -n "$dns2tcp_process" ] && [ -n "$smartdns_process" ] && [ $(nvram get sdns_enable) = 1 ] ; then
+		sleep 2
+		check_smsrtdns
+	else
+		if [ -n "$smartdns_process" ] && [ $(nvram get ss_enable) = 0 ] ; then
+			sleep 2
+			check_smsrtdns
+		fi
+	fi
+	echo 3 > /proc/sys/vm/drop_caches
 	;;
 restart)
 	ssp_close
 	ssp_start
+	if [ $(nvram get sdns_enable) = 1 ] ; then
+		sleep 2
+		check_smsrtdns
+	fi
+	echo 3 > /proc/sys/vm/drop_caches
 	;;
 reserver)
 	ssp_close
 	ressp
+	if [ $(nvram get sdns_enable) = 1 ] ; then
+		sleep 2
+		check_smsrtdns
+	fi
+	echo 3 > /proc/sys/vm/drop_caches
 	;;
 *)
 	echo "check"

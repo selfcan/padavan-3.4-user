@@ -128,5 +128,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: Padavan-user-R3G-minidlna-filebrowser-transmission-smartdns-aliddns-zerotier-SSR-v2ray-trojan-xray-dnsforwarder-adbyby-adguardhome-aldriver-ddnsto_2024_09_18
+        name: Padavan-user-R3G-minidlna-filebrowser-transmission-smartdns-aliddns-zerotier-SSR-v2ray-trojan-xray-dnsforwarder-adbyby-adguardhome-aldriver-ddnsto_2025_04_12
         path: /opt/images

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+NAME=AdGuardHome
+BIN=$(test -e /usr/bin/$NAME && echo /usr/bin/$NAME || echo /opt/bin/$NAME)
 adg_file="/etc/storage/adg.sh"
 work_dir="/tmp/AdGuardHome"
 change_dns() {
@@ -136,7 +138,7 @@ start_adg(){
 	change_dns
 	set_iptable
 	logger -t "AdGuardHome" "启动 AdGuardHome"
-	AdGuardHome -c $adg_file -w $work_dir -v &
+	$BIN -c $adg_file -w $work_dir &
 }
 
 stop_adg(){

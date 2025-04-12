@@ -1,5 +1,14 @@
 name: Padavan-user-R3G-Single-APP
 on: 
+  release:
+    types: [published]
+  push:
+    tags:
+    - 'v*'
+    branches: 
+      - Single-APP
+#  schedule:
+#    - cron: 0 8 * * 5
   watch:
     types: [started]
 

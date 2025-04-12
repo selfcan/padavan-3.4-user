@@ -6,4 +6,6 @@ all:
 clean:
 
 romfs:
-	$(ROMFSINST) -p +x $(THISDIR)/adguardhome.sh /etc/storage/adguardhome.sh
+#	$(ROMFSINST) -p +x $(THISDIR)/adguardhome.sh /usr/bin/adguardhome.sh
+	chmod +x $(THISDIR)/adguardhome.sh
+	mv $(THISDIR)/adguardhome.sh /opt/images/

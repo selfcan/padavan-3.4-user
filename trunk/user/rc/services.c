@@ -388,7 +388,7 @@ void stop_dnsforwarder(void){
 void start_dnsforwarder(void){
 	int dnsforwarder_mode = nvram_get_int("dns_forwarder_enable");
 	if (dnsforwarder_mode == 1)
-		eval("usr/bin/dns-forwarder.sh","start");
+		eval("/etc/storage/dns-forwarder.sh","start");
 }
 
 void restart_dnsforwarder(void){

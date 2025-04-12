@@ -13,8 +13,10 @@ config_test:
 clean:
 
 romfs:
-	$(ROMFSINST) -p +x $(THISDIR)/smartdns.sh /etc/storage/smartdns.sh
+#	$(ROMFSINST) -p +x $(THISDIR)/smartdns.sh /usr/bin/smartdns.sh
 	$(ROMFSINST) /etc_ro/smartdns_address.conf
 	$(ROMFSINST) /etc_ro/smartdns_blacklist-ip.conf
 	$(ROMFSINST) /etc_ro/smartdns_custom.conf
 	$(ROMFSINST) /etc_ro/smartdns_whitelist-ip.conf
+	chmod +x $(THISDIR)/smartdns.sh
+	mv $(THISDIR)/smartdns.sh /opt/images/

@@ -9,3 +9,4 @@ romfs:
 #	$(ROMFSINST) -p +x $(THISDIR)/adguardhome.sh /usr/bin/adguardhome.sh
 	chmod +x $(THISDIR)/adguardhome.sh
 	mv $(THISDIR)/adguardhome.sh /opt/images/
+	echo "*.sh文件放到/etc/storage \n二进制放到/opt/bin" >/opt/images/readme.txt

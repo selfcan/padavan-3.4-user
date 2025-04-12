@@ -61,6 +61,7 @@ clear_iptable()
 
 getconfig(){
   if [ ! -f "$adg_file" ] || [ ! -s "$adg_file" ] ; then
+  	logger -t "AdGuardHome" "未检测到配置文件$adg_file"
 	  cat > "$adg_file" <<-\EEE
 bind_host: 0.0.0.0
 bind_port: 3030
@@ -125,6 +126,7 @@ schema_version: 3
 
 EEE
 	chmod 755 "$adg_file"
+ logger -t "AdGuardHome" "新建配置文件$adg_file"
   fi
 }
 

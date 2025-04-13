@@ -156,10 +156,10 @@ start_zero() {
 }
 kill_z() {
 	zerotier_process=$(pidof zerotier-one)
-	if [ -n "$zerotier_process" ]; then
+ 	zerotier_sh_process=$(pidof zerotier.sh)
+	if [ -n "$zerotier_process" ] || [ -n "$zerotier_sh_process" ]; then
 		logger -t "zerotier" "关闭进程..."
-		killall zerotier-one >/dev/null 2>&1
-		kill -9 "$zerotier_process" >/dev/null 2>&1
+		pgrep -f "zerotier" | xargs kill -9 >/dev/null 2>&1
 	fi
 }
 stop_zero() {
@@ -242,6 +242,5 @@ stop)
 	;;
 *)
 	echo "check"
-	#exit 0
 	;;
 esac

@@ -322,24 +322,38 @@ EOF
 }
 
 start_AD() {
-	mkdir -p /tmp/dnsmasq.dom
-	curl -k -s -o /tmp/adnew.conf --connect-timeout 10 --retry 3 $(nvram get ss_adblock_url)
-	if [ ! -f "/tmp/adnew.conf" ]; then
-		logger -t "SS" "去广告AD文件下载失败，可能是地址失效或者网络异常！"
-	else
-		logger -t "SS" "去广告AD文件下载成功"
-		if [ -f "/tmp/adnew.conf" ]; then
-			check = `grep -wq "address=" /tmp/adnew.conf`
-	  		if [ ! -n "$check" ] ; then
-	    			cp /tmp/adnew.conf /tmp/dnsmasq.dom/ad.conf
-	  		else
-			    cat /tmp/adnew.conf | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/0\.0\.0\.0:' > /tmp/dnsmasq.dom/ad.conf
-			fi
-		fi
-	fi
-	rm -f /tmp/adnew.conf
-}
+    # 下载广告规则文件
+    ad_file="/tmp/adnew.conf"
+    target_file="/tmp/dnsmasq.dom/anti-ad-for-dnsmasq.conf"
+    download_url=$(nvram get ss_adblock_url)
+    if [ $(nvram get ss_adblock) = "1" ]; then
+        # 创建目标目录（如果不存在）
+        mkdir -p /tmp/dnsmasq.dom
+        if ! curl -k -s -o "$ad_file" --connect-timeout 10 --retry 3 "$download_url"; then
+            logger -t "SS" "去广告AD文件下载失败，可能是地址失效或者网络异常！"
+            return 1
+        fi
 
+        logger -t "SS" "去广告AD文件下载成功"
+
+        # 检查文件内容并处理
+        if grep -wq "address=" "$ad_file"; then
+            # 如果文件包含 "address="，直接复制到目标文件
+            cp "$ad_file" "$target_file"
+        else
+            # 否则，提取特定格式的行并进行转换
+            grep -E '^\|\|[^*]*\^$' "$ad_file" | sed -e 's:||:address=/:' -e 's:\^:/0.0.0.0:' > "$target_file"
+        fi
+
+        # 清理临时文件
+        rm -rf "$ad_file"
+    else
+		if [ -f "$target_file" ]; then
+			rm -rf "$target_file"
+			logger -t "SS" "关闭广告过滤，已删除AD规则文件$target_file"
+		fi
+    fi
+}
 
 # ================================= 启动 Socks5代理 ===============================
 start_local() {
@@ -424,14 +438,14 @@ EOF
 # ================================= 启动 SS ===============================
 ssp_start() { 
     ss_enable=`nvram get ss_enable`
-if rules; then
+	if rules; then
 		if start_redir_tcp; then
-		start_redir_udp
-        #start_rules
-		#start_AD
-        start_dns
+			start_redir_udp
+        	#start_rules
+			#start_AD
+        	start_dns
 		fi
-		fi
+	fi
         start_local
         start_watchcat
         auto_update
@@ -573,63 +587,45 @@ ressp() {
 	logger -t "SS" "内网IP控制为:$lancons"
 }
 check_smsrtdns() {
-	smartdns_process=$(pidof smartdns)
-	if [ -n "$smartdns_process" ] && [ $(nvram get sdns_enable) = 1 ] ; then
-		log "检测到 SmartDNS 已开启,正在重启 SmartDNS..."
-		[ $(pidof smartdns | awk '{ print $1 }')x != x ] && killall -9 smartdns >/dev/null 2>&1
-		/etc/storage/smartdns.sh start
+
+    if [ "$(nvram get sdns_enable)" = "1" ]; then
+		# 检查 SmartDNS 是否正在运行
+		local smartdns_Bin=$(test -e /usr/bin/smartdns && echo /usr/bin/smartdns || echo /opt/bin/smartdns)
+		local smartdns_process=$(pidof smartdns)
+		if [ -n "$smartdns_process" ]; then
+			logger -t "SS" "检测到 SmartDNS 已开启，正在重启 SmartDNS..."
+			killall -9 smartdns >/dev/null 2>&1
+			sleep 2
+			$smartdns_Bin start
+		else
+			logger -t "SS" "SmartDNS配置为开，但未运行！"
+		fi
 	fi
 }
 case $1 in
 start)
-	if [ $(nvram get ss_adblock) = "1" ]; then
-		start_AD
-	fi
+	start_AD
 	ssp_start
-	smartdns_process=$(pidof smartdns)
-	if [ -n "$smartdns_process" ] && [ $(nvram get sdns_enable) = 1 ] ; then
-		sleep 2
-		check_smsrtdns
-	fi
-	echo 3 > /proc/sys/vm/drop_caches
+	check_smsrtdns
 	;;
 stop)
 	killall -q -9 ssr-switch
 	ssp_close
-	dns2tcp_process=$(pidof dns2tcp)
-	smartdns_process=$(pidof smartdns)
-	if [ -n "$dns2tcp_process" ] && [ -n "$smartdns_process" ] && [ $(nvram get sdns_enable) = 1 ] ; then
-		sleep 2
-		check_smsrtdns
-	else
-		if [ -n "$smartdns_process" ] && [ $(nvram get ss_enable) = 0 ] ; then
-			sleep 2
-			check_smsrtdns
-		fi
-	fi
-	echo 3 > /proc/sys/vm/drop_caches
+	check_smsrtdns
 	;;
 restart)
 	ssp_close
+	start_AD
 	ssp_start
-	if [ $(nvram get sdns_enable) = 1 ] ; then
-		sleep 2
-		check_smsrtdns
-	fi
-	echo 3 > /proc/sys/vm/drop_caches
+	check_smsrtdns
 	;;
 reserver)
 	ssp_close
+	start_AD
 	ressp
-	if [ $(nvram get sdns_enable) = 1 ] ; then
-		sleep 2
-		check_smsrtdns
-	fi
-	echo 3 > /proc/sys/vm/drop_caches
+	check_smsrtdns
 	;;
 *)
-	echo "check"
-	#exit 0
+	echo "start|stop|restart|reserver"
 	;;
 esac
-

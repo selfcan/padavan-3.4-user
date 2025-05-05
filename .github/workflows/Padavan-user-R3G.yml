@@ -36,7 +36,7 @@ jobs:
         if [ $KERNEL = "4.4" ] ; then
         git clone --depth=1 https://github.com/MeIsReallyBa/padavan-4.4.git /opt/rt-n56u
         else
-        git clone --depth=1 https://github.com/limory/padavan-3.4-user.git /opt/rt-n56u
+        git clone -b single-APP --depth=1 https://github.com/limory/padavan-3.4-user.git /opt/rt-n56u
         fi
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
@@ -92,16 +92,16 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n" >> .config #SCUTCLIENT
         echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=n" >> .config # simple-obfs混淆插件
         echo "CONFIG_FIRMWARE_INCLUDE_SSSERVER=n" >> .config #SS server
-        echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n" >> .config #DNSFORWARDER
         echo "CONFIG_FIRMWARE_INCLUDE_FRPC=n" >> .config #内网穿透FRPC
         echo "CONFIG_FIRMWARE_INCLUDE_FRPS=n" >> .config #内网穿透FRPS
         echo "CONFIG_FIRMWARE_INCLUDE_TUNSAFE=n" >> .config #TUNSAFE
         echo "CONFIG_FIRMWARE_INCLUDE_CADDYBIN=n" >> .config #size 13M 如不集成，从网上下载下来执行，不影响使用
-        echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=n" >> .config #拦截广告，可选其他插件替代
         echo "CONFIG_FIRMWARE_INCLUDE_SRELAY=n" >> .config #srelay架设socket5代理
-        echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=n" >> .config #adbyby plus+
         echo "CONFIG_FIRMWARE_INCLUDE_HTOP=n" >> .config #htop类似top命令
-        #################### 以下集成到 Xiaomi-R3G #################################
+        #################### 以下集成到 Xiaomi-R3G ###########################
+        echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=y" >> .config #DNSFORWARDER
+        echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=y" >> .config #adbyby plus+
+        echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=y" >> .config #拦截广告，可选其他插件
         echo "CONFIG_FIRMWARE_WEBUI_HIDE_VPN=y" >> .config #删除左侧导航栏VPN选项
         echo "CONFIG_FIRMWARE_INCLUDE_MINIDLNA=y" >> .config ### minidlna 1.3.3
         echo "CONFIG_FIRMWARE_INCLUDE_CADDY=y" >> .config #WEB服务及文件管理
@@ -129,5 +129,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: Padavan-user-R3G-minidlna1.3.3-filebrowser-transmission-smartdns-aliddns-zerotier-SSR-v2ray-trojan-xray-aldriver-ddnsto_2024_09_12
+        name: Padavan-user-R3G-minidlna-filebrowser-transmission-smartdns-aliddns-zerotier-SSR-v2ray-trojan-xray-dnsforwarder-adbyby-adguardhome-aldriver-ddnsto_2025_04_12
         path: /opt/images

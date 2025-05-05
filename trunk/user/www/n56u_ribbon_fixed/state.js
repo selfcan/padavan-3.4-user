@@ -399,34 +399,32 @@ tabtitle[7] = new Array("", "<#menu5_10_1#>", "<#menu5_10_2#>", "<#menu5_10_3#>"
 tabtitle[8] = new Array("", "<#menu5_11#>", "<#menu5_12#>", "WAN", "", "", "", "", "", "", "");
 tabtitle[9] = new Array("", "<#menu5_7_2#>", "<#menu5_7_3#>", "<#menu5_7_5#>", "<#menu5_7_6#>", "<#menu5_7_8#>");
 if (found_app_scutclient()){
-	tabtitle[10] = new Array("", "<#menu5_1_1#>","<#menu5_13_log#>");
+	tabtitle[11] = new Array("", "<#menu5_1_1#>","<#menu5_13_log#>");
 }
-if (found_app_dnsforwarder()){
-	tabtitle[11] = new Array("", "<#menu5_1_1#>");
-}
+
 if (found_app_shadowsocks()){
 	tabtitle[12] = new Array("", "<#menu5_1_1#>","<#menu5_16_20#>");
 }
 if (found_app_mentohust()){
 	tabtitle[13] = new Array("", "<#menu5_1_1#>","<#menu5_13_log#>");
 }
-if (found_app_adbyby()){
-	tabtitle[14] = new Array("", "<#menu5_20_1#>");
+if (found_app_adbyby()||found_app_adguardhome()){
+	tabtitle[14] = new Array("", "<#menu5_20#>");
 }
-if (found_app_smartdns()||found_app_adguardhome()){
+if (found_app_smartdns()||found_app_dnsforwarder()){
 	tabtitle[15] = new Array("", "<#menu5_29#>");
 }
 if (found_app_aliddns()||found_app_zerotier()||found_app_ddnsto()){
 	tabtitle[16] = new Array("", "<#menu5_30#>");
 }
 if (found_app_frp()){
-	tabtitle[17] = new Array("", "<#menu5_25_1#>");
-}
-if (found_app_aldriver()){
-	tabtitle[17] = new Array("", "<#menu5_36#>");
+        tabtitle[17] = new Array("", "<#menu5_25_1#>");
 }
 if (found_app_caddy()){
 	tabtitle[18] = new Array("", "<#menu5_27_1#>");
+}
+if (found_app_aldriver()){
+        tabtitle[19] = new Array("", "<#menu5_36#>");
 }
 //Level 3 Tab title
 
@@ -442,12 +440,9 @@ tablink[8] = new Array("", "Main_WStatus2g_Content.asp", "Main_WStatus_Content.a
 tablink[9] = new Array("", "Main_LogStatus_Content.asp", "Main_DHCPStatus_Content.asp", "Main_IPTStatus_Content.asp", "Main_RouteStatus_Content.asp", "Main_CTStatus_Content.asp");
 if (found_app_scutclient()){
 	scutclient_array = new Array("", "scutclient.asp", "scutclient_log.asp");
-	tablink[10] = (scutclient_array);
+	tablink[11] = (scutclient_array);
 }
-if (found_app_dnsforwarder()){
-	dns_forwarder_array = new Array("", "dns-forwarder.asp");
-	tablink[11] = (dns_forwarder_array);
-}
+
 if (found_app_shadowsocks()){
 	shadowsocks_array = new Array("","Shadowsocks.asp","Shadowsocks_log.asp");
 	tablink[12] = (shadowsocks_array);
@@ -459,6 +454,9 @@ if (found_app_mentohust()){
 if (found_app_adbyby()){
 	ad_array = new Array("","Advanced_adbyby.asp");
 	tablink[14] = (ad_array);
+}else if (found_app_adguardhome()){
+	adg_array = new Array("","Advanced_adguardhome.asp");
+	tablink[14] = (adg_array);
 }
 	
 	
@@ -466,10 +464,11 @@ if (found_app_adbyby()){
 if (found_app_smartdns()){
 	smartdns_array = new Array("","Advanced_smartdns.asp");
 	tablink[15] = (smartdns_array);
-}else if (found_app_adguardhome()){
-	adg_array = new Array("","Advanced_adguardhome.asp");
-	tablink[15] = (adg_array);
+}else if (found_app_dnsforwarder()){
+	dns_forwarder_array = new Array("", "dns-forwarder.asp");
+	tablink[15] = (dns_forwarder_array);
 }
+
 if (found_app_aliddns()){
 	aliddns_array = new Array("","Advanced_aliddns.asp");
 	tablink[16] = (aliddns_array);
@@ -480,27 +479,21 @@ if (found_app_aliddns()){
 	ddnsto_array = new Array("","Advanced_ddnsto.asp");
 	tablink[16] = (ddnsto_array);
 }
-if (found_app_aldriver()){
-	aldriver_arry = new Array("","Advanced_aliyundrive.asp");
-	tablink[17] = (aldriver_arry);
-}
- 
- 
 if (found_app_frp()){
-	frp_array = new Array("","Advanced_frp.asp");
-	tablink[19] = (frp_array);
-	tabtitle[9].push('<#menu5_25_1#>');
-	tablink[9].push('Advanced_frp_log.asp');
-												  
-							 
- 
-					 
-											  
-						   
+        frp_array = new Array("","Advanced_frp.asp");
+        tablink[17] = (frp_array);
+        tabtitle[9].push("<#menu5_25_1#>");
+	tablink[9].push("Advanced_frp_log.asp");
+
 }
 if (found_app_caddy()){
-	caddy_array = new Array("","Advanced_caddy.asp");
-	tablink[18] = (caddy_array);
+        caddy_array = new Array("","Advanced_caddy.asp");
+        tablink[18] = (caddy_array);
+} 
+
+if (found_app_aldriver()){
+        aldriver_arry = new Array("","Advanced_aliyundrive.asp");
+        tablink[19] = (aldriver_arry);
 }
 
 //Level 2 Menu
@@ -510,9 +503,6 @@ if (found_app_scutclient()){
 	menuL2_title.push("<#menu5_13#>");
 } else menuL2_title.push("");
 
-if (found_app_dnsforwarder()){
-	menuL2_title.push("<#menu5_15#>");
-} else menuL2_title.push("");
 
 if (found_app_shadowsocks()){
 	menuL2_title.push("<#menu5_16#>");
@@ -522,13 +512,13 @@ if (found_app_mentohust()){
 	menuL2_title.push("mentohust");
 } else menuL2_title.push("");
 
-if (found_app_adbyby()){
+if (found_app_adbyby()||found_app_adguardhome()){
 								   
 							  
 	menuL2_title.push("<#menu5_20#>");
 } else menuL2_title.push("");
 
-if (found_app_smartdns()||found_app_adguardhome()){
+if (found_app_smartdns()||found_app_dnsforwarder()){
 	menuL2_title.push("<#menu5_29#>");
 									
 								   
@@ -557,9 +547,6 @@ if (found_app_scutclient()){
 	menuL2_link.push(scutclient_array[1]);
 } else menuL2_link.push("");
 
-if (found_app_dnsforwarder()){
-	menuL2_link.push(dns_forwarder_array[1]);
-} else menuL2_link.push("");
 
 if (found_app_shadowsocks()){
 	menuL2_link.push(shadowsocks_array[1]);
@@ -569,14 +556,14 @@ if (found_app_mentohust()){
 	menuL2_link.push(mentohust_array[1]);
 } else menuL2_link.push("");
 if (found_app_adbyby()){
-	menuL2_link.push(ad_array[1]);
-	
-	
-} else menuL2_link.push("");
-if (found_app_smartdns()){
-	menuL2_link.push(smartdns_array[1]);
+	menuL2_link.push(ad_array[1]);	
 } else if (found_app_adguardhome()){
 	menuL2_link.push(adg_array[1]);
+}else menuL2_link.push("");
+if (found_app_smartdns()){
+	menuL2_link.push(smartdns_array[1]);
+} else if (found_app_dnsforwarder()){
+	menuL2_link.push(dns_forwarder_array[1]);
 } else menuL2_link.push("");
 if (found_app_aliddns()){
 	menuL2_link.push(aliddns_array[1]);
@@ -586,16 +573,15 @@ if (found_app_aliddns()){
 	menuL2_link.push(ddnsto_array[1]);
 } else menuL2_link.push("");
 
-if (found_app_aldriver()){
-	menuL2_link.push(aldriver_arry[1]);
-} else menuL2_link.push("");
 if (found_app_frp()){
 	menuL2_link.push(frp_array[1]);
 } else menuL2_link.push("");
 if (found_app_caddy()){
 	menuL2_link.push(caddy_array[1]);
 } else menuL2_link.push("");
-	
+if (found_app_aldriver()){
+        menuL2_link.push(aldriver_arry[1]);
+} else menuL2_link.push("");	
 		
 			
 				
@@ -758,10 +744,6 @@ function show_menu(L1, L2, L3){
 function show_footer(){
 	footer_code = '<div align="center" class="bottom-image"></div>\n';
 	footer_code +='<div align="center" class="copyright"><#footer_copyright_desc#></div>\n';
-	footer_code +='<div align="center">\n';
-	footer_code +='  <span>Highcharts by Torstein Hønsi & <a href="http://www.highcharts.com">Highsoft</a></span></br>\n';
-	footer_code +='  <span>Big icons designed by <a href="http://www.freepik.com">Freepik</a></br></span>\n';
-	footer_code +='  <span>Non-Commercial Use Only</span></br>\n';
 	footer_code +='</div>\n';
 
 	$("footer").innerHTML = footer_code;

@@ -242,6 +242,5 @@ stop)
 	;;
 *)
 	echo "check"
-	#exit 0
 	;;
 esac

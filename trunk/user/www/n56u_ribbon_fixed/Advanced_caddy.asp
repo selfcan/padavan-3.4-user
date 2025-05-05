@@ -42,7 +42,7 @@ $j(document).ready(function() {
 
 function initial(){
 	show_banner(2);
-	show_menu(5,19);
+	show_menu(5,18);
 	show_footer();
 show_caddy_stroage();
 show_caddy_dir();

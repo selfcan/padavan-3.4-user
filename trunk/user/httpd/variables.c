@@ -585,8 +585,8 @@
 			{"dhcp_stop_dns_rebind", "", NULL, EVM_RESTART_DHCPD},
 			{"dhcp_proxy_dnssec", "", NULL, EVM_RESTART_DHCPD},
 			{"dhcp_verbose", "", NULL, EVM_RESTART_DHCPD},
-			
-			
+			{"dhcp_filter_aaa", "", NULL, EVM_RESTART_DHCPD},
+			{"dhcp_min_ttl", "", NULL, EVM_RESTART_DHCPD},		
 			{"dhcp_static_x", "", NULL, EVM_RESTART_DHCPD},
 			{"dhcp_static_arp", "", NULL, EVM_RESTART_DHCPD},
 			{"dhcp_staticnum_x", "", NULL, EVM_RESTART_DHCPD},
@@ -685,6 +685,8 @@
 			{"vpns_ov_atls", "", NULL, EVM_REAPPLY_VPNSVR},
 			{"vpns_ov_tcv2", "", NULL, EVM_REAPPLY_VPNSVR},
 			{"vpns_ov_rdgw", "", NULL, EVM_REAPPLY_VPNSVR},
+			{"vpns_ov_clzo", "", NULL, EVM_REAPPLY_VPNSVR},
+			{"vpnc_ov_clzo", "", NULL, EVM_RESTART_VPNCLI},			
 			{"vpnc_ov_mode", "", NULL, EVM_RESTART_VPNCLI},
 			{"vpnc_ov_cnat", "", NULL, EVM_RESTART_VPNCLI},
 			{"vpnc_ov_prot", "", NULL, EVM_RESTART_VPNCLI},

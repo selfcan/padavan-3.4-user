@@ -78,7 +78,7 @@
         }
         function initial() {
             show_banner(2);
-            show_menu(5, 16);
+            show_menu(5, 15);
             show_footer();
             showTab(getHash());
             showMRULESList();
@@ -170,7 +170,7 @@
             return true;
         }
         function showmenu() {
-            showhide_div('adglink', found_app_adguardhome());
+            showhide_div('dnsflink', found_app_dnsforwarder());
         }
         function showMRULESList() {
             var code = '<table width="100%" cellspacing="0" cellpadding="3" class="table table-list">';
@@ -286,9 +286,9 @@
                                                         <#menu5_24#>
                                                     </a>
                                                 </li>
-                                                <li id="adglink" style="display:none">
-                                                    <a href="Advanced_adguardhome.asp">
-                                                        <#menu5_28#>
+                                                <li id="dnsflink" style="display:none">
+                                                    <a href="dns-forwarder.asp">
+                                                        <#menu5_15#>
                                                     </a>
                                                 </li>
                                             </ul>

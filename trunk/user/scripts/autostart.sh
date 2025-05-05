@@ -13,7 +13,7 @@ if [ $(nvram get sdns_enable) = 1 ] ; then
        rm  -f "$smartdns_Ini"
    fi
 logger -t "自动启动" "正在启动 SmartDNS..."
-/usr/bin/smartdns.sh start
+/etc/storage/smartdns.sh start
 fi
 
 if [ $(nvram get caddy_enable) = 1 ] ; then
@@ -75,7 +75,7 @@ fi
 
 if [ $(nvram get adg_enable) = 1 ] ; then
 logger -t "${self_name}" "自动启动 正在启动adguardhome"
-/usr/bin/adguardhome.sh start
+/etc/storage/adguardhome.sh start
 fi
 
 if [ $(nvram get zerotier_enable) = 1 ] ; then
@@ -89,5 +89,5 @@ fi
 
 if [ $(nvram get aliyundrive_enable) = 1 ] ; then
 logger -t "自动启动" "正在启动阿里云盘..."
-/usr/bin/aliyundrive-webdav.sh start
+/etc/storage/aliyundrive-webdav.sh start
 fi

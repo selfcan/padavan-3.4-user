@@ -85,7 +85,8 @@ var isMenuopen = 0;
 
 function initial(){
 	show_banner(2);
-	show_menu(5,15);
+	show_menu(5,14);
+	showmenu();
 	show_footer();
 	fill_adbyby_status(adbyby_status());
 	//change_adbyby_enable();
@@ -97,6 +98,10 @@ function initial(){
 	if (!login_safe())
 		textarea_scripts_enabled(0);
 		//load_body();
+}
+
+function showmenu(){
+showhide_div('adglink', found_app_adguardhome());
 }
 
 function textarea_scripts_enabled(v){
@@ -443,7 +448,7 @@ function changeBgColorrl(obj, num){
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="box well grad_colour_dark_blue">
-							<h2 class="box_head round_top"><#menu5_20_1#> - <#menu5_20#></h2>
+							<h2 class="box_head round_top"><#menu5_20#> - <#menu5_20_1#></h2>
 							<div class="round_bottom">
 							<div>
                             <ul class="nav nav-tabs" style="margin-bottom: 10px;">
@@ -451,8 +456,8 @@ function changeBgColorrl(obj, num){
 								<li class="active">
                                     <a href="Advanced_adbyby.asp"><#menu5_20_1#></a>
                                 </li>
-								 <li id="adlink" style="display:none">
-                                    <a href="Advanced_koolproxy.asp"><#menu5_26_1#></a>
+								 <li id="adglink" style="display:none">
+                                    <a href="Advanced_adguardhome.asp"><#menu5_28#></a>
                                 </li>
                             </ul>
                         </div>

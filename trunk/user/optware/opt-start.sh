@@ -1,14 +1,14 @@
 #!/bin/sh
 
 self_name="opt-start.sh"
-logger -t "${self_name}" "开始运行  Entware检测是否安装?启动/opt/etc/init.d服务?"
+logger -t "${self_name}" "开始检查OptWare服务..."
 optw_enable=`nvram get optw_enable`
-[ "$optw_enable" != "1" ] && exit 0
+[ "$optw_enable" != "1" ] && (logger -t "${self_name}" "OptWare服务配置未开启！") && exit 0
 
 # check /opt is mounted
 # 如果/opt已经挂载了 则继续执行下一步
 # 如果/opt没有挂载，则退出
-mountpoint -q /opt || exit 0
+mountpoint -q /opt || logger -t "${self_name}" "/opt目录未挂载！" && exit 0
 
 # extend path to /opt
 export PATH=/opt/sbin:/opt/bin:/usr/sbin:/usr/bin:/sbin:/bin

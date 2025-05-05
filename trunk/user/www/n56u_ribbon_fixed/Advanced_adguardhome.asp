@@ -37,7 +37,7 @@ $j(document).ready(function() {
 
 function initial(){
 	show_banner(2);
-	show_menu(5,16);
+	show_menu(5,14);
 	showmenu();
 	show_footer();
 
@@ -56,7 +56,7 @@ function applyRule(){
 }
 
 function showmenu(){
-showhide_div('sdnslink', found_app_smartdns());
+showhide_div('adbylink', found_app_adbyby());
 }
 
 function done_validating(action){
@@ -116,12 +116,12 @@ function done_validating(action){
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="box well grad_colour_dark_blue">
-							<h2 class="box_head round_top"><#menu5_29#> - <#menu5_28#></h2>
+							<h2 class="box_head round_top"><#menu5_20#> - <#menu5_28#></h2>
 							<div class="round_bottom">
 							<div>
                             <ul class="nav nav-tabs" style="margin-bottom: 10px;">
-								<li id="sdnslink" style="display:none">
-                                    <a href="Advanced_smartdns.asp"><#menu5_24#></a>
+								<li id="adbylink" style="display:none">
+                                    <a href="Advanced_adbyby.asp"><#menu5_20_1#></a>
                                 </li>
 								 <li class="active">
                                     <a href="Advanced_adguardhome.asp"><#menu5_28#></a>

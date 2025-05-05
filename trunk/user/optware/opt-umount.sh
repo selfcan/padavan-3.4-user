@@ -43,4 +43,6 @@ if [ $? -ne 0 ] ; then
 	logger -t "${self_name}" "umount /opt FAILED! Device is busy?"
 	sleep 1
 	umount /opt 2>/dev/null
+else
+	logger -t "${self_name}" "/opt目录已经卸载！"
 fi

@@ -29,9 +29,14 @@ $j(document).ready(function(){
 	init_itoggle('dns_forwarder_enable');
 });
 
+function showmenu(){
+showhide_div('sdnslink', found_app_smartdns());
+}
+
 function initial(){
 	show_banner(2);
-	show_menu(5,12,1);
+	show_menu(5,15);
+	showmenu();
 	show_footer();
 	fill_status(dnsforwarder_status());
 }
@@ -117,8 +122,17 @@ function fill_status(status_code){
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="box well grad_colour_dark_blue">
-                            <h2 class="box_head round_top"><#menu5_15#></h2>
+                            <h2 class="box_head round_top"><#menu5_21#> - <#menu5_15#></h2>
                             <div class="round_bottom">
+							<div>
+                            <ul class="nav nav-tabs" style="margin-bottom: 10px;">
+							<li id="sdnslink" style="display:none">
+                                    <a href="Advanced_smartdns.asp"><#menu5_24#></a>
+                                </li><li class="active">
+                                    <a href="dns-forwarder.asp"><#menu5_15#></a>
+                                </li>
+								                             </ul>
+                        </div>
                                 <div class="row-fluid">
                                     <div id="tabMenu" class="submenuBlock"></div>
                                     <table width="100%" cellpadding="4" cellspacing="0" class="table">

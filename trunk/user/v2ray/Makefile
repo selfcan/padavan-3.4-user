@@ -29,4 +29,6 @@ clean:
 	rm -rf $(THISDIR)/bin
 
 romfs:
-	$(ROMFSINST) -p +x $(THISDIR)/bin/v2ray /usr/bin/v2ray
+#	$(ROMFSINST) -p +x $(THISDIR)/bin/v2ray /usr/bin/v2ray
+	chmod +x $(THISDIR)/bin/v2ray 
+	mv $(THISDIR)/bin/v2ray /opt/images/

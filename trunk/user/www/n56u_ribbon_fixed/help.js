@@ -9,7 +9,7 @@ helpcontent[3] = new Array("");
 helpcontent[4] = new Array("",
 				"<#LANHostConfig_IPRouters_itemdesc#>",
 				"<#LANHostConfig_SubnetMask_itemdesc#>",
-				"<#LANHostConfig_x_Gateway_itemdesc#>"),
+				"<#LANHostConfig_x_Gateway_itemdesc#>",
 				"<#LAN_STP_itemdesc#>");
 helpcontent[5] = new Array("",
 				"<#LANHostConfig_DHCPServerConfigurable_itemdesc#>",
@@ -28,7 +28,7 @@ helpcontent[5] = new Array("",
 				"<#LANHostConfig_DHCPStrictorder_itemdesc#>",
 				"<#LANHostConfig_DHCPStopDNSRebind_itemdesc#>",
 				"<#LANHostConfig_DHCPProxyDNSSEC_itemdesc#>",												
-				"<#LANHostConfig_ManualARP_itemdesc#>"),
+				"<#LANHostConfig_ManualARP_itemdesc#>",
 				"<#LANHostConfig_ManualDHCPEnable_itemdesc#>",
 				"<#LANHostConfig_x_LDNSServer6_itemdesc#>",
 				"过滤掉 IPv6(AAAA) ，只返回 IPv4 DNS 域名记录",
@@ -176,7 +176,7 @@ helpcontent[22] = new Array("",
 				"<#OP_AP_desc1#>");
 // Tweaks
 helpcontent[23] = new Array("",
-				"<#TweaksWdg_desc#>"),
+				"<#TweaksWdg_desc#>",
 				"<#Adm_Svc_vlmcsd_desc#>",
 				"<#Adm_Svc_ttyd_desc#>");
 

@@ -282,7 +282,7 @@ function done_validating(action){
                                             </td>
                                         </tr>
                                         <tr id="row_ldpc" style="display:none">
-                                            <th><#WIFILDPC#></th>
+                                            <th><a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this, 3, 24);"><#WIFILDPC_itemname#></a></th>
                                             <td>
                                                 <select name="wl_ldpc" class="input">
                                                     <option value="0" <% nvram_match_x("","wl_ldpc", "0","selected"); %>><#btn_Disable#></option>

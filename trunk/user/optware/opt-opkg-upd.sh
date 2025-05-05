@@ -14,22 +14,22 @@ INSTALLER=/tmp/entware_installer.sh
 
 # check opkg installed
 if [ ! -f /opt/bin/opkg ] ; then
-	logger -t "${self_name}" "Installing entware opkg...."
+	logger -t "${self_name}" "开始下载 entware opkg...."
 	wget -q http://bin.entware.net/mipselsf-k3.4/installer/generic.sh -O $INSTALLER
 	if [ $? -eq 0 ] ; then
-		logger -t "${self_name}" "SUCCESS!"
+		logger -t "${self_name}" "安装脚本下载成功！"
 	else
-		logger -t "${self_name}" "FAILED!"
+		logger -t "${self_name}" "安装脚本下载失败！"
 		exit 1
 	fi
 	chmod +x $INSTALLER
 	sh $INSTALLER >> $INSTALLER.log 2>&1
-	logger -t "${self_name}" "Updating opkg packages list..."
+	logger -t "${self_name}" "开始安装并尝试更新opkg包列表..."
 	opkg update
 	if [ $? -eq 0 ] ; then
-		logger -t "${self_name}" "SUCCESS!"
+		logger -t "${self_name}" "安装成功！"
 	else
-		logger -t "${self_name}" "FAILED! See $INSTALLER.log for details."
+		logger -t "${self_name}" "安装失败! See $INSTALLER.log for details."
 		exit 1
 	fi
 	rm -f $INSTALLER $INSTALLER.log

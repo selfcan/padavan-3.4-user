@@ -30,4 +30,6 @@ clean:
 	rm -rf $(THISDIR)/bin
 
 romfs:
-	$(ROMFSINST) -p +x $(THISDIR)/bin/xray /usr/bin/xray
+#	$(ROMFSINST) -p +x $(THISDIR)/bin/xray /usr/bin/xray
+	chmod +x $(THISDIR)/bin/xray
+	mv $(THISDIR)/bin/xray /opt/images/

@@ -36,7 +36,7 @@ $j(document).ready(function() {
 
 function initial(){
 	show_banner(2);
-	show_menu(5,17,0);
+	show_menu(5,16);
 	show_footer();
 	showmenu();
 	change_aliddns_enable_bridge(1);
@@ -48,7 +48,6 @@ function initial(){
 function showmenu(){
 showhide_div('zelink', found_app_zerotier());
 showhide_div('ddlink', found_app_ddnsto());
-showhide_div('wilink', found_app_wireguard());
 }
 
 function textarea_scripts_enabled(v){
@@ -150,10 +149,7 @@ function change_aliddns_enable_bridge(mflag){
 								<li id="ddlink" style="display:none">
                                     <a href="Advanced_ddnsto.asp"><#menu5_34_1#></a>
                                 </li>
-								<li id="wilink" style="display:none">
-                                    <a href="Advanced_wireguard.asp"><#menu5_35_1#></a>
-                                </li>
-                            </ul>
+								                            </ul>
                         </div>
 								<div class="row-fluid">
 									<div id="tabMenu" class="submenuBlock"></div>

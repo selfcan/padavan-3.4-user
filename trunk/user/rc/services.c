@@ -382,13 +382,13 @@ void restart_vlmcsd(void){
 
 #if defined(APP_DNSFORWARDER)
 void stop_dnsforwarder(void){
-	eval("/usr/bin/dns-forwarder.sh","stop");
+	eval("/etc/storage/dns-forwarder.sh","stop");
 }
 
 void start_dnsforwarder(void){
 	int dnsforwarder_mode = nvram_get_int("dns_forwarder_enable");
 	if (dnsforwarder_mode == 1)
-		eval("usr/bin/dns-forwarder.sh","start");
+		eval("/etc/storage/dns-forwarder.sh","start");
 }
 
 void restart_dnsforwarder(void){
@@ -416,13 +416,13 @@ void start_napt66(void){
 
 #if defined(APP_ADGUARDHOME)
 void stop_adguardhome(void){
-	eval("/usr/bin/adguardhome.sh","stop");
+	eval("/etc/storage/adguardhome.sh","stop");
 }
 
 void start_adguardhome(void){
 	int adg_mode = nvram_get_int("adg_enable");
 	if ( adg_mode == 1)
-		eval("/usr/bin/adguardhome.sh","start");
+		eval("/etc/storage/adguardhome.sh","start");
 }
 
 void restart_adguardhome(void){
@@ -469,13 +469,13 @@ void restart_ddnsto(void){
 
 #if defined(APP_ALDRIVER)
 void stop_aldriver(void){
-	eval("/usr/bin/aliyundrive-webdav.sh","stop");
+	eval("/etc/storage/aliyundrive-webdav.sh","stop");
 }
 
 void start_aldriver(void){
 	int aldriver_enable = nvram_get_int("aliyundrive_enable");
 	if ( aldriver_enable == 1)
-		eval("/usr/bin/aliyundrive-webdav.sh","start");
+		eval("/etc/storage/aliyundrive-webdav.sh","start");
 }
 
 void restart_aldriver(void){
@@ -508,13 +508,13 @@ void update_adb(void){
 
 #if defined(APP_SMARTDNS)
 void stop_smartdns(void){
-	eval("/usr/bin/smartdns.sh","stop");
+	eval("/etc/storage/smartdns.sh","stop");
 }
 
 void start_smartdns(void){
 	int smartdns_mode = nvram_get_int("sdns_enable");
 	if ( smartdns_mode == 1)
-		eval("/usr/bin/smartdns.sh","start");
+		eval("/etc/storage/smartdns.sh","start");
 }
 
 void restart_smartdns(void){

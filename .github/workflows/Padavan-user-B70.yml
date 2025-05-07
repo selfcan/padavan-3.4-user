@@ -8,8 +8,8 @@ on:
 #    - 'v*'
   #  branches: 
   #    - master
-#  schedule:
-#    - cron: 0 8 * * 5
+  schedule:
+    - cron: 0 8 * * 5
   watch:
     types: [started]
 
@@ -99,7 +99,7 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_SRELAY=n" >> .config #srelay架设socket5代理
         echo "CONFIG_FIRMWARE_INCLUDE_HTOP=n" >> .config #htop类似top命令
         #################### 以下集成到 Xiaomi-R3G ###########################
-        echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=y" >> .config #DNSFORWARDER
+        echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n" >> .config #DNSFORWARDER
         echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=y" >> .config #adbyby plus+
         echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=y" >> .config #拦截广告，可选其他插件
         echo "CONFIG_FIRMWARE_WEBUI_HIDE_VPN=y" >> .config #删除左侧导航栏VPN选项
@@ -108,7 +108,7 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION=y" >> .config ###TRANSMISSION 下载器
         echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION_WEB_CONTROL=y" >> .config ###TRANSMISSION 下载器web管理
         echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y" >> .config #SS plus+
-        echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=y" >> .config #集成v2ray执行文件（3.8M左右)
+        echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=n" >> .config #集成v2ray执行文件（3.8M左右)
         echo "CONFIG_FIRMWARE_INCLUDE_TROJAN=y" >> .config #集成trojan执行文件(1.1M左右)
         echo "CONFIG_FIRMWARE_INCLUDE_XRAY=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_ALDRIVER=n" >> .config
@@ -129,5 +129,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: Padavan-user-R3G-minidlna-filebrowser-transmission-smartdns-aliddns-zerotier-SSR-v2ray-trojan-xray-dnsforwarder-adbyby-adguardhome-aldriver-ddnsto_2025_05_05
+        name: Padavan-user-B70
         path: /opt/images

@@ -101,12 +101,12 @@ tls:
   private_key: ""
 filters:
 - enabled: true
-  url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
-  name: AdGuard Simplified Domain Names filter
+  url: https://anti-ad.net/adguard.txt
+  name: antiad
   id: 1
 - enabled: true
-  url: https://adaway.org/hosts.txt
-  name: AdAway
+  url: https://easylist-downloads.adblockplus.org/easylistchina+easylist.txt
+  name: easylist
   id: 2
 user_rules: []
 dhcp:
